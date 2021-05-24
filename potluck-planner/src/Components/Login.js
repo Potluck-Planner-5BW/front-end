@@ -25,7 +25,7 @@ export default function Login(props) {
                         src="https://uploads-ssl.webflow.com/6010580d08831070b0339b25/60aae538cc512e19c981cafa_Artboard%2027.png"
                         alt="Workflow"
                     />
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to the Potluck!</h2>
                     <p className="mt-2 text-center text-sm text-gray-600">
                         Or{' '}
                         <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
