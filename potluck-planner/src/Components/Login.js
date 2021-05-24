@@ -29,7 +29,7 @@ export default function Login(props) {
                     <p className="mt-2 text-center text-sm text-gray-600">
                         Or{' '}
                         <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                            start your 14-day free trial
+                            start your 30-day free trial
                         </a>
                     </p>
                 </div>
@@ -41,6 +41,7 @@ export default function Login(props) {
                     <div>
                         <div>{error.email}</div>
                         <div>{error.password}</div>
+
                       
                     </div>
 
