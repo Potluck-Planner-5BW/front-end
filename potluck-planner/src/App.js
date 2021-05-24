@@ -120,7 +120,7 @@ const disableNow = true;
 };
 export default App;
 
-//PSUEDO-COMPONENTS Placed here to mitigate errors TO BE REMOVED LATER
+//PSUEDO-COMPONENTS Placed here 2 mitigate errors TO BE REMOVED LATER
 
 
 function FoodList(props) {
