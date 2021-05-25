@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 export default function Login(props) {
     const { values, change, submit, disable, error } = props;
@@ -25,12 +25,17 @@ export default function Login(props) {
                         src="https://uploads-ssl.webflow.com/6010580d08831070b0339b25/60aae538cc512e19c981cafa_Artboard%2027.png"
                         alt="Workflow"
                     />
+
+                    {/* <a href="#" className="block relative">
+                        <img alt="profil" src="https://uploads-ssl.webflow.com/6010580d08831070b0339b25/60ac2e081a5db338cbc23534_BLKME3%202.PNG" className="mx-auto object-cover rounded-full h-20 w-20"/>
+                    </a> */}
+
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to the Potluck!</h2>
                     <p className="mt-2 text-center text-sm text-gray-600">
-                        Or{' '}
-                        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                            start your 30-day free trial
-                        </a>
+                        Not a member yet?{' '}
+                        <Link to="/Registration" className="font-bold font-medium text-indigo-600 hover:text-indigo-500">
+                             Sign-up
+                        </Link>
                     </p>
                 </div>
 
@@ -88,7 +93,7 @@ export default function Login(props) {
                                 type="checkbox"
                                 onChange={change}
                                 checked={values.remember_me}
-                                className="h-4 w-4 bg-blew focus:ring-indigo-500 border-gray-300 rounded"
+                                className="h-4 w-4 bg-brand focus:ring-indigo-500 border-gray-300 rounded"
                                 />
                             <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-900">
                                 Remember me
@@ -96,9 +101,9 @@ export default function Login(props) {
                         </div>
 
                         <div className="text-sm">
-                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500">
                                 Forgot your password?
-                            </a>
+                            </Link>
                         </div>
                     </div>
 

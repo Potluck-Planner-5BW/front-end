@@ -9,6 +9,9 @@ module.exports = {
         DEFAULT: '#FBBE16',
         dark: '#DDA200',
       },
+      dub: {
+        DEFAULT: 'FFFFFF',
+      },
       blew: {
         DEFAULT: '#1982C4',
       },
@@ -18,5 +21,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
