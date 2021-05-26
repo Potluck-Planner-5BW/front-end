@@ -16,12 +16,16 @@ import GuestDash from './Components/GuestDash';
 const initialFormValues = {
   email: '',
   password: '',
-  remember_me: false
+  remember_me: false,
+  auth_code: '',
+
 }
 
 const initialError = {
   email: '',
-  password: ''
+  password: '',
+  remember_me: false,
+  auth_code: ''
 }
 
 const disableNow = true;
@@ -30,13 +34,15 @@ const disableNow = true;
 const initialRegistrationValues = {
   name: '',
   email: '',
-  password: '',
+  password: ''
+
 }
 
 const initialRegistrationError = {
   name: '',
   email: '',
   password: ''
+
 }
 
 const disableRegistrationNow = true;
@@ -61,13 +67,12 @@ function App() {
   /* -------- NEW USER REGISTRATION ------------  */
   /* -------- NEW USER REGISTRATION ------------  */
 
-  const [newUser, setNewUser] = useState([]);
+  const [setNewUser] = useState([]);
   const [registrationValues, setRegistrationValues] = useState(initialRegistrationValues);
   const [registrationErrors, setRegistrationErrors] = useState(initialRegistrationError);
   const [disableRegistration, setDisableRegistration] = useState(disableRegistrationNow);
 
   /* -------------------------- HELPERS -------------------------- */
-  const [organizer] = useState(true)
 
 
   /* -------------------------- HELPERS -------------------------- */
@@ -197,9 +202,8 @@ function App() {
               values={formValues}
               change={inputChange}
               submit={submitForm}
-              disable={disable}
+              disabled={disable}
               error={formErrors}
-
             />
           </Route>
 
@@ -214,15 +218,14 @@ function App() {
               rSubmit={submitRegistration}
               rDisable={disableRegistration}
               rError={registrationErrors}
-              organizer={organizer}
             />
           </Route>
 
-          <Route path="/alphaDashboard">
+          <Route path="/dashboard/organizer">
             <OrganizerDash />
           </Route>
 
-          <Route path="/betaDashboard">
+          <Route path="/dashboard">
             <GuestDash />
           </Route>
         </Switch>

@@ -3,20 +3,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
-    colors: {
-      brand: {
-        light: '#FCD164',
-        DEFAULT: '#FBBE16',
-        dark: '#DDA200',
-      },
-      dub: {
-        DEFAULT: 'FFFFFF',
-      },
-      blew: {
-        DEFAULT: '#1982C4',
-      },
-      //bg-brand-light
-    }
+    
   },
   variants: {
     extend: {},
