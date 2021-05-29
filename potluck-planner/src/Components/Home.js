@@ -48,7 +48,7 @@ function Home(props) {
                             <img
                               className="h-8 w-auto sm:h-20"
                               src="https://uploads-ssl.webflow.com/6010580d08831070b0339b25/60aae538cc512e19c981cafa_Artboard%2027.png"
-                            />
+                           alt=""/>
                           </a>
                           <div className="-mr-2 flex items-center md:hidden">
                             <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
