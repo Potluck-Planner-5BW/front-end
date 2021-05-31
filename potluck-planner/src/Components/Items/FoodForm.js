@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../../helpers/axiosWithAuth';
 
-export default function ItemForm(props) {
-    const [ form, setForm ] = useState(props.itemToEdit || {dish_name: "", food_type: "", servings: ""});
+export default function FoodForm(props) {
+    const [ form, setForm ] = useState(props.foodToEdit || {dish_name: "", food_type: "", servings: ""});
 
     const handleChange = (e) => {
         setForm({
@@ -13,17 +13,17 @@ export default function ItemForm(props) {
 
     const handlesave = (e) => {
         e.preventDefault();
-        if(props.itemToEdit) {
+        if(props.foodToEdit) {
             axiosWithAuth()
-            .put(`/items/${props.itemToEdit.id}`, form)
+            .put(`/potluck/:id/food/${props.foodToEdit.id}`, form)
             .then((res) => {
                 console.log(res);
-                props.setItems(
-                    props.items.map((item) => {
-                        if(item.id===Number(res.data.id)) {
+                props.setfoods(
+                    props.foods.map((food) => {
+                        if(food.id===Number(res.data.id)) {
                             return res.data;
                         }else {
-                            return item;
+                            return food;
                         }
                     })
                 );
@@ -32,10 +32,10 @@ export default function ItemForm(props) {
 
         }else {
             axiosWithAuth()
-            .post("/items", form)
+            .post("/potluck/:id/food", form)
             .then((res) => {
-                props.setItems(res.data);
-                props.setAddItem(false);
+                props.setfoods(res.data);
+                props.setAddfood(false);
             })
             .catch((err) => console.log(err));
         }
@@ -44,7 +44,7 @@ export default function ItemForm(props) {
     const handleDelete = (e) => {
         e.preventDefault();
         axiosWithAuth()
-        .delete(`items/${props.itemToEdit.id}`)
+        .delete(`/potluck/:id/food/${props.foodToEdit.id}`)
         .then((res) => {
             console.log(res);
         })
@@ -67,4 +67,4 @@ export default function ItemForm(props) {
 };
 
 //this this componnent needs to integrate with other components and also I need to handle the props either context api or the old fashion way
-//also I need to customize my form to fit my food list items characterstics.
+//also I need to customize my form to fit my food list foods characterstics.

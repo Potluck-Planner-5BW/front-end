@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Nav from "./Components/Nav/Nav";
-import Home from "./Components/Home-Page/Home";
+import Home from "./Components/HomeA";
 import SignupForm from "./Components/register/SignUpForm";
 import LogInForm from "./Components/register/LogInForm";
 import { PrivateRoute } from "./helpers/privateRoute";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import UpdateProfile from "./Components/UserProfile/UpdateProfile";
-import EditItem from "./Components/Items/EditItem";
-import ItemsList from "./Components/Items/ItemsList";
+import FoodForm from "./Components/Items/FoodForm";
+import FoodsList from "./Components/Items/FoodList";
 import { ItemContext } from "./Components/Contexts/ItemContext";
+import FoodCard from "./Components/Items/FoodCard";
 
 function App() {
   const [itemList, setItemList] = useState([]);
@@ -26,9 +27,11 @@ function App() {
 
           <Route path="/sign-in" component={LogInForm} />
 
-          <PrivateRoute exact path="/my-Potluck" component={ItemsList} />
+          <Route exact path="/food-form" component={FoodForm} />
 
-          <PrivateRoute exact path="/edit-item/:id" component={EditItem} />
+          <PrivateRoute exact path="/food-list" component={FoodsList} />
+
+          <PrivateRoute exact path="/add_dish/:id" component={FoodCard} />
 
           <PrivateRoute path="/my-profile" component={UserProfile} />
 

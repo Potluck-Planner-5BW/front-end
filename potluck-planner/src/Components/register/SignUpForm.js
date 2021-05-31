@@ -6,15 +6,13 @@ import axios from "axios";
 const initialFormValues = {
   ///// TEXT INPUTS /////
   username: "",
-  phoneNumber: "",
   password: "",
 };
 
 // INITIALIZE FORM ERRORS
 const initialFormErrors = {
   username: "",
-  phoneNumber: "",
-  password: "",
+  password: ""
 };
 
 const initialDisabled = true;
@@ -25,10 +23,6 @@ const formSchema = yup.object().shape({
         .trim()
         .required('username is required, please fill out.')
         .min(3, 'username must be 3 characters long'),
-    phoneNumber: yup.string()
-        .trim()
-        .min(10, 'phone number must be 10 digits long.')
-        .required('phone number is required, please fill out.'),
     password: yup.string()
         .min(6,'Password must be 8 characters long')
         .required('Password is required, please fill out.'), 
@@ -62,17 +56,16 @@ export default function SignupForm() {
 
     const newUser = {
       username: formValues.username.trim(),
-      phoneNumber: formValues.phoneNumber.trim(),
-      password: formValues.password.trim(),
+      password: formValues.password.trim()
     };
 
     axios
       .post(
-        "https://backend-u4-ttwebpt102.herokuapp.com/api/auth/register",
+        "https://potluck-planner-4-backend.herokuapp.com/api/users",
         newUser
       )
       .then((response) => {
-        push("/LogIn-form");
+        push("/LogIn-Form");
         console.log(response);
       })
       .catch((error) => console.log(error));
@@ -123,21 +116,6 @@ export default function SignupForm() {
                   <label htmlFor="inputPassword">Password</label>
                 </div>
                 <div className="err-mes">{formErrors.password}</div>
-
-                <div className="form-label-group">
-                  <input
-                    name="phoneNumber"
-                    type="text"
-                    id="inputPhone"
-                    className="form-control"
-                    placeholder="Phone Number"
-                    value={formValues.phoneNumber}
-                    onChange={inputChange}
-                    required
-                  />
-                  <label htmlFor="inputPhone">Phone Number</label>
-                </div>
-                <div className="err-mes">{formErrors.phoneNumber}</div>
 
                 <button
                   className="btn btn-lg btn-outline-success btn-block text-uppercase"

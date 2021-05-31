@@ -26,7 +26,7 @@ const formSchema = yup.object().shape({
     .min(3, "Username must be 3 characters long"),
   password: yup
     .string()
-    .min(6, "Password must be 8 characters long")
+    .min(6, "Password must be 6 characters long")
     .required("Password is required, please fill out."),
 });
 
@@ -60,12 +60,12 @@ export default function LogInForm() {
     };
 
     axios
-      .post("https://backend-u4-ttwebpt102.herokuapp.com/api/auth/login", user)
+      .post("https://potluck-planner-4-backend.herokuapp.com/api/users", user)
       .then((response) => {
         localStorage.setItem("token", response.data.token);
         //console.log(response.data);
         localStorage.setItem("id", response.data.user_id);
-        push("/items-list");
+        push("/food-list");
       })
       .catch((err) => {
         console.log(err);

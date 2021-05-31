@@ -1,5 +1,5 @@
-// import { useHistory } from "react-router-dom";
-import { Fragment } from 'react'
+
+import React, { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
@@ -16,6 +16,7 @@ function Home(props) {
   // const loginRoute = () => {
   //   history.push("/Registration")
   // }
+  //const { push } = useHistory();
 
   return (
     <>
@@ -43,12 +44,8 @@ function Home(props) {
                     >
                       <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                         <div className="flex items-center justify-between w-full md:w-auto">
-                          <a href="#">
+                          <a href="#Item-Form">
                             <span className="sr-only">Workflow</span>
-                            <img
-                              className="h-8 w-auto sm:h-20"
-                              src="https://uploads-ssl.webflow.com/6010580d08831070b0339b25/60aae538cc512e19c981cafa_Artboard%2027.png"
-                           alt=""/>
                           </a>
                           <div className="-mr-2 flex items-center md:hidden">
                             <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -64,7 +61,7 @@ function Home(props) {
                             {item.name}
                           </a>
                         ))}
-                        <Link to="/Login" className="font-medium text-yellow-400 hover:text-yellow-300">
+                        <Link to="/LogIn-Form" className="font-medium text-yellow-400 hover:text-yellow-300">
                           Log in
                       </Link>
                       </div>
@@ -114,7 +111,7 @@ function Home(props) {
                           ))}
                         </div>
                         <Link
-                          to="/Login"
+                          to="/LogIn-Form"
                           className="block w-full px-5 py-3 text-center font-medium text-yellow-400 bg-gray-50 hover:bg-gray-100"
                         >
                           Log in
@@ -134,21 +131,21 @@ function Home(props) {
 </span>
                 </h1>
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-                  fugiat veniam occaecat fugiat aliqua.
+                  We can do anything. It's not because our hearts are large, they are not, it's what we struggle with. the attempt to say Come over. Bring your friends. It's Potluck, I am making pork chops, I am making those long noodles you love so much.
               </p>
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div className="rounded-md shadow">
                     <Link
-                      to="/Registration"
+                      to="/sign-up"
                       className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-300 md:py-4 md:text-lg md:px-10"
                     >
                       Sign up
                   </Link>
+                  
                   </div>
                   <div className="mt-3 sm:mt-0 sm:ml-3">
                     <Link
-                      to="/Login"
+                      to="/log-in"
                       className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-yellow-500 bg-yellow-100 hover:bg-yellow-200 md:py-4 md:text-lg md:px-10"
                     >
                       Log in

@@ -1,9 +1,9 @@
-import './App.css';
+import './App2.css';
 import './index'
 import { Route, Switch } from "react-router-dom";
 import Login from './Components/Login';
 import Registration from './Components/RegisterPage';
-import Home from './Components/Home';
+import Home from './Components/HomeA';
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import * as yup from "yup";
@@ -46,25 +46,15 @@ const initialRegistrationError = {
 }
 
 const disableRegistrationNow = true;
-
-
 /* -------- STATE USED ------------  */
-/* -------- STATE USED ------------  */
-/* -------- STATE USED ------------  */
+function App2() {
 
-function App() {
-
-  /* -------- CURRENT USER LOGIN ------------  */
-  /* -------- CURRENT USER LOGIN ------------  */
-  /* -------- CURRENT USER LOGIN ------------  */
-
+/* -------- CURRENT USER LOGIN ------------  */
+  
   const [user, setUser] = useState([]);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialError);
   const [disable, setDisable] = useState(disableNow);
-
-  /* -------- NEW USER REGISTRATION ------------  */
-  /* -------- NEW USER REGISTRATION ------------  */
   /* -------- NEW USER REGISTRATION ------------  */
 
   const [setNewUser] = useState([]);
@@ -73,11 +63,6 @@ function App() {
   const [disableRegistration, setDisableRegistration] = useState(disableRegistrationNow);
 
   /* -------------------------- HELPERS -------------------------- */
-
-
-  /* -------------------------- HELPERS -------------------------- */
-  /* -------------------------- AXIOS -------------------------- */
-  /* -------------------------- PLUS -------------------------- */
 
   const postUser = (userx) => {
     axios
@@ -90,9 +75,7 @@ function App() {
   };
 
   /* -------------------------- REGISTRATION HELPERS -------------------------- */
-  /* -------------------------- REGISTRATION AXIOS -------------------------- */
-  /* -------------------------- REGISTRATION PLUS -------------------------- */
-
+  
   const postNewUser = (newUser) => {
     axios
       .post('https://reqres.in/api/orders/', newUser)
@@ -104,8 +87,7 @@ function App() {
   };
 
   /* -------- CHANGE HANDLER ------------  */
-  /* -------- CHANGE HANDLER ------------  */
-  /* -------- CHANGE HANDLER ------------  */
+  
   const inputChange = (event) => {
     const { name, value, checked, type } = event.target
     const inputValue = type === "checkbox" ? checked : value
@@ -137,16 +119,14 @@ function App() {
   }, [formValues]);
 
   /* -------- SUBMIT HANDLER ------------  */
-  /* -------- SUBMIT HANDLER ------------  */
-  /* -------- SUBMIT HANDLER ------------  */
+  
   const submitForm = () => {
     postUser(formValues)
     console.log(postUser)
   }
 
   /* -------- REGISTRATION CHANGE HANDLER ------------  */
-  /* -------- REGISTRATION CHANGE HANDLER ------------  */
-  /* -------- REGISTRATION CHANGE HANDLER ------------  */
+  
   const registrationChange = (event) => {
     const { name, value, checked, type } = event.target
     const inputRegValue = type === "checkbox" ? checked : value
@@ -190,7 +170,7 @@ function App() {
 
   return (
     <>
-      <div className="App" >
+      <div className="App2" >
 
         <Switch>
           <Route exact path="/">
@@ -235,7 +215,7 @@ function App() {
 
   );
 };
-export default App;
+export default App2;
 
 //PSUEDO-COMPONENTS Placed here 2 mitigate errors TO BE REMOVED LATER
 
