@@ -2,9 +2,9 @@ import axios from "axios";
 export const axiosWithAuth = () => {
     const token = localStorage.getItem("token");
     return axios.create({
-        baseURL: "http://localhost:5000/api",
+        baseURL: "https://potluck-planner-4-backend.herokuapp.com",
         headers: {
-            "Content-Type": "aplication/json",
+            "Content-Type": "application/json",
             Authorization: `${token}`
         },
     });

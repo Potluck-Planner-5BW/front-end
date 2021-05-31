@@ -23,11 +23,14 @@ export default function Nav() {
   return (
     <div className="header-container">
       <Link className="logo" to="/">
-        You Are Invited!
+      <img
+                              className="h-8 w-auto sm:h-20"
+                              src="https://uploads-ssl.webflow.com/6010580d08831070b0339b25/60aae538cc512e19c981cafa_Artboard%2027.png"
+                           alt=""/> Bring Your friends
       </Link>
       <div className="nav-container">
         {isLogIn && (
-          <Link className="option1" to="/my-profile">
+          <Link className="option1" to="/my-profil">
             <p className="option-hello">HELLO</p>{" "}
             <p className="option-name">{helloName}</p>
           </Link>
@@ -35,8 +38,11 @@ export default function Nav() {
         <Link className="option" to="/">
           HOME
         </Link>
-        <Link className="option" to="/Item-list">
+        <Link className="option" to="/food-list">
           MY Potluck
+        </Link>
+        <Link className="option" to="/food-form">
+          OrganizerDash
         </Link>
         <Link className="option" to="/" onClick={() => localStorage.clear()}>
           Log out

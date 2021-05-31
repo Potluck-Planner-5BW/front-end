@@ -1,291 +1,46 @@
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import './App.css';
-import './index'
-import { Route, Switch } from "react-router-dom";
-import Login from './Components/Login';
-import Registration from './Components/RegisterPage';
-import Home from './Components/Home';
-import { useState, useEffect } from 'react';
-import axios from "axios";
-import * as yup from "yup";
-import { schema } from './Components/validation/formSchema';
-import { regSchema } from './Components/validation/RegistrationSchema';
-import OrganizerDash from './Components/OrganizerDash';
-import GuestDash from './Components/GuestDash';
-
-
-const initialFormValues = {
-  email: '',
-  password: '',
-  remember_me: false,
-  auth_code: '',
-
-}
-
-const initialError = {
-  email: '',
-  password: '',
-  remember_me: false,
-  auth_code: ''
-}
-
-const disableNow = true;
-
-
-const initialRegistrationValues = {
-  name: '',
-  email: '',
-  password: ''
-
-}
-
-const initialRegistrationError = {
-  name: '',
-  email: '',
-  password: ''
-
-}
-
-const disableRegistrationNow = true;
-
-
-/* -------- STATE USED ------------  */
-/* -------- STATE USED ------------  */
-/* -------- STATE USED ------------  */
+import Nav from "./Components/Nav/Nav";
+import Home from "./Components/HomeA";
+import SignupForm from "./Components/register/SignUpForm";
+import LogInForm from "./Components/register/LogInForm";
+import { PrivateRoute } from "./helpers/privateRoute";
+import UserProfile from "./Components/UserProfile/UserProfile";
+import UpdateProfile from "./Components/UserProfile/UpdateProfile";
+import FoodForm from "./Components/Items/FoodForm";
+import FoodsList from "./Components/Items/FoodList";
+import { ItemContext } from "./Components/Contexts/ItemContext";
+import FoodCard from "./Components/Items/FoodCard";
 
 function App() {
-
-  /* -------- CURRENT USER LOGIN ------------  */
-  /* -------- CURRENT USER LOGIN ------------  */
-  /* -------- CURRENT USER LOGIN ------------  */
-
-  const [user, setUser] = useState([]);
-  const [formValues, setFormValues] = useState(initialFormValues);
-  const [formErrors, setFormErrors] = useState(initialError);
-  const [disable, setDisable] = useState(disableNow);
-
-  /* -------- NEW USER REGISTRATION ------------  */
-  /* -------- NEW USER REGISTRATION ------------  */
-  /* -------- NEW USER REGISTRATION ------------  */
-
-  const [setNewUser] = useState([]);
-  const [registrationValues, setRegistrationValues] = useState(initialRegistrationValues);
-  const [registrationErrors, setRegistrationErrors] = useState(initialRegistrationError);
-  const [disableRegistration, setDisableRegistration] = useState(disableRegistrationNow);
-
-  /* -------------------------- HELPERS -------------------------- */
-
-
-  /* -------------------------- HELPERS -------------------------- */
-  /* -------------------------- AXIOS -------------------------- */
-  /* -------------------------- PLUS -------------------------- */
-
-  const postUser = (userx) => {
-    axios
-      .post('https://reqres.in/api/orders/', userx)
-      .then(({ data }) => {
-        setUser([data, ...user]);
-        console.log(data)
-      })
-      .catch(error => console.log('Error Posting Users:', error));
-  };
-
-  /* -------------------------- REGISTRATION HELPERS -------------------------- */
-  /* -------------------------- REGISTRATION AXIOS -------------------------- */
-  /* -------------------------- REGISTRATION PLUS -------------------------- */
-
-  const postNewUser = (newUser) => {
-    axios
-      .post('https://reqres.in/api/orders/', newUser)
-      .then(({ data }) => {
-        setNewUser([data, ...newUser]);
-        console.log(data)
-      })
-      .catch(error => console.log('Error Posting Users:', error));
-  };
-
-  /* -------- CHANGE HANDLER ------------  */
-  /* -------- CHANGE HANDLER ------------  */
-  /* -------- CHANGE HANDLER ------------  */
-  const inputChange = (event) => {
-    const { name, value, checked, type } = event.target
-    const inputValue = type === "checkbox" ? checked : value
-
-    yup
-      .reach(schema, name)
-      .validate(inputValue)
-      .then(() =>
-        setFormErrors({
-          ...formErrors,
-          [name]: ''
-        })
-      )
-      .catch((err) =>
-        setFormErrors({
-          ...formErrors,
-          [name]: err.errors[0]
-        })
-      );
-
-    setFormValues({
-      ...formValues,
-      [name]: inputValue
-    })
-  }
-
-  useEffect(() => {
-    schema.isValid(formValues).then((valid) => setDisable(!valid));
-  }, [formValues]);
-
-  /* -------- SUBMIT HANDLER ------------  */
-  /* -------- SUBMIT HANDLER ------------  */
-  /* -------- SUBMIT HANDLER ------------  */
-  const submitForm = () => {
-    postUser(formValues)
-    console.log(postUser)
-  }
-
-  /* -------- REGISTRATION CHANGE HANDLER ------------  */
-  /* -------- REGISTRATION CHANGE HANDLER ------------  */
-  /* -------- REGISTRATION CHANGE HANDLER ------------  */
-  const registrationChange = (event) => {
-    const { name, value, checked, type } = event.target
-    const inputRegValue = type === "checkbox" ? checked : value
-
-    yup
-      .reach(regSchema, name)
-      .validate(inputRegValue)
-      .then(() =>
-        setRegistrationErrors({
-          ...registrationErrors,
-          [name]: ''
-        })
-      )
-      .catch((err) =>
-        setRegistrationErrors({
-          ...registrationErrors,
-          [name]: err.errors[0]
-        })
-      );
-
-    setRegistrationValues({
-      ...registrationValues,
-      [name]: inputRegValue
-    })
-  }
-
-  useEffect(() => {
-    regSchema.isValid(registrationValues).then((valid) => setDisableRegistration(!valid));
-  }, [registrationValues]);
-
-  /* -------- SUBMIT HANDLER ------------  */
-  /* -------- SUBMIT HANDLER ------------  */
-  /* -------- SUBMIT HANDLER ------------  */
-
-  const submitRegistration = () => {
-    postNewUser(registrationValues)
-    console.log(postNewUser)
-  }
-
-
+  const [itemList, setItemList] = useState([]);
 
   return (
-    <>
-      <div className="App" >
-
+    <ItemContext.Provider value={{ itemList, setItemList }}>
+      <Router>
+        <Nav />
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
+          <Route exact path="/" component={Home} />
 
-          <Route path="/login">
-            <Login
-              values={formValues}
-              change={inputChange}
-              submit={submitForm}
-              disabled={disable}
-              error={formErrors}
-            />
-          </Route>
+          <Route path="/sign-up" component={SignupForm} />
 
-          <Route path="/Foodlist">
-            <FoodList />
-          </Route>
+          <Route path="/sign-in" component={LogInForm} />
 
-          <Route path="/Registration">
-            <Registration
-              rValues={registrationValues}
-              rChange={registrationChange}
-              rSubmit={submitRegistration}
-              rDisable={disableRegistration}
-              rError={registrationErrors}
-            />
-          </Route>
+          <Route exact path="/food-form" component={FoodForm} />
 
-          <Route path="/dashboard/organizer">
-            <OrganizerDash />
-          </Route>
+          <PrivateRoute exact path="/food-list" component={FoodsList} />
 
-          <Route path="/dashboard">
-            <GuestDash />
-          </Route>
+          <PrivateRoute exact path="/add_dish/:id" component={FoodCard} />
+
+          <PrivateRoute path="/my-profile" component={UserProfile} />
+
+          <PrivateRoute path="/update-profile" component={UpdateProfile} />
         </Switch>
-      </div>
-
-    </>
-
+      </Router>
+    </ItemContext.Provider>
   );
-};
-export default App;
-
-//PSUEDO-COMPONENTS Placed here 2 mitigate errors TO BE REMOVED LATER
-
-
-function FoodList(props) {
-  return null;
 }
 
-
-// import React, { useState } from "react";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
-// import Nav from "./components/Nav/Nav";
-// import Home from "./components/Home-Page/Home";
-// import SignupForm from "./components/register/SignUpForm";
-// import LogInForm from "./components/register/LogInForm";
-// import { PrivateRoute } from "./helpers/privateRoute";
-// import UserProfile from "./components/UserProfile/UserProfile";
-// import UpdateProfile from "./components/UserProfile/UpdateProfile";
-// import EditItem from "./components/Items/EditItem";
-// import ItemsList from "./components/Items/ItemsList";
-// import { ItemContext } from "./components/Contexts/ItemContext";
-
-// function App() {
-//   const [itemList, setItemList] = useState([]);
-
-//   return (
-//     <ItemContext.Provider value={{ itemList, setItemList }}>
-//       <Router>
-//         <Nav />
-//         <Switch>
-//           <Route exact path="/" component={Home} />
-
-//           <Route path="/sign-up" component={SignupForm} />
-
-//           <Route path="/sign-in" component={LogInForm} />
-
-//           <PrivateRoute exact path="/my-Potluck" component={ItemsList} />
-
-//           <PrivateRoute exact path="/edit-plant/:id" component={EditItem} />
-
-//           <PrivateRoute path="/my-profile" component={UserProfile} />
-
-//           <PrivateRoute path="/update-profile" component={UpdateProfile} />
-//         </Switch>
-//       </Router>
-//     </ItemContext.Provider>
-//   );
-// }
-
-// export default App;
+export default App;
 

@@ -25,7 +25,7 @@ export default function Home() {
             Sign Up
           </button>
           <button
-            onClick={() => push("/LogIn-form")}
+            onClick={() => push("/LogIn-Form")}
             type="button"
             class="home-signin btn btn-outline-success"
           >
