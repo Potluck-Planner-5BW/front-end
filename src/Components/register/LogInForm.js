@@ -61,7 +61,9 @@ export default function LogInForm(props) {
     }
 
     useEffect(() => {
-        schema.isValid(formValues).then((valid) => setDisable(!valid));
+        schema.isValid(formValues)
+            .then((valid) => setDisable(!valid))
+            .catch(err => console.log(err))
     }, [formValues]);
 
     /* -------- SUBMIT HANDLER ------------  */

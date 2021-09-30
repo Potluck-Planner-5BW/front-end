@@ -115,7 +115,9 @@ function App2() {
   }
 
   useEffect(() => {
-    schema.isValid(formValues).then((valid) => setDisable(!valid));
+    schema.isValid(formValues)
+      .then(valid => setDisable(!valid))
+      .catch(err => console.log(err))
   }, [formValues]);
 
   /* -------- SUBMIT HANDLER ------------  */
@@ -154,7 +156,9 @@ function App2() {
   }
 
   useEffect(() => {
-    regSchema.isValid(registrationValues).then((valid) => setDisableRegistration(!valid));
+    regSchema.isValid(registrationValues)
+      .then((valid) => setDisableRegistration(!valid))
+      .catch(err => console.log(err))
   }, [registrationValues]);
 
   /* -------- SUBMIT HANDLER ------------  */

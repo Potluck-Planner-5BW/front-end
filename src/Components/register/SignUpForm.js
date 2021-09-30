@@ -61,7 +61,9 @@ function SignupForm(props) {
     }
 
     useEffect(() => {
-        regSchema.isValid(registrationValues).then((valid) => setDisableRegistration(!valid));
+        regSchema.isValid(registrationValues)
+            .then((valid) => setDisableRegistration(!valid))
+            .catch(err => console.log(err))
     }, [registrationValues]);
 
     /* -------- SUBMIT HANDLER ------------  */
