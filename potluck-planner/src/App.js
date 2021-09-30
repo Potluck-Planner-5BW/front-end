@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import OrganizerDash from "./Components/Organizer/OrganizerDash"
 import Nav from "./Components/Nav/Nav";
-import Home from "./Components/Home";
-import SignupForm from "./Components/register/SignupForm";
-import LogInForm from "./Components/register/LoginForm";
+import Home from "./Components/Home-Page/Home";
+import SignupForm from "./Components/register/SignUpForm";
+import LogInForm from "./Components/register/LogInForm";
 import { PrivateRoute } from "./helpers/privateRoute";
-import UserProfile from "./Components/UserProfile/UserProfile";
-import UpdateProfile from "./Components/UserProfile/UpdateProfile";
-import FoodForm from "./Components/Items/FoodForm";
-import FoodsList from "./Components/Items/FoodList";
+import UserProfile from "./Components/UserProfile/GuestDash";
+// import UpdateProfile from "./Components/UserProfile/UpdateProfile";
+// import FoodForm from "./Components/Items/FoodForm";
+import FoodsList from "./Components/Items/ListItem";
 import { ItemContext } from "./Components/Contexts/ItemContext";
-import FoodCard from "./Components/Items/FoodCard";
+import FoodCard from "./Components/Items/Food";
 import GuestDash from "./Components/UserProfile/GuestDash";
 import OrganizerSelect from "./Components/Organizer/OrganizerSelection";
 
@@ -35,7 +35,7 @@ function App() {
 
           <Route path="/select" component={OrganizerSelect} />
 
-          <Route exact path="/food-form" component={FoodForm} />
+          {/* <Route exact path="/food-form" component={FoodForm} /> */}
 
           <PrivateRoute exact path="/food-list" component={FoodsList} />
 
@@ -43,7 +43,7 @@ function App() {
 
           <PrivateRoute path="/my-profile" component={UserProfile} />
 
-          <PrivateRoute path="/update-profile" component={UpdateProfile} />
+          {/* <PrivateRoute path="/update-profile" component={UpdateProfile} /> */}
         </Switch>
       </Router>
     </ItemContext.Provider>

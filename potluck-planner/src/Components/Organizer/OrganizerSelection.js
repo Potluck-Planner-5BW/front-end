@@ -1,7 +1,5 @@
 import Food from '../Items/Food'
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
-
 
 export default function OrganizerSelect(props) {
 
@@ -21,9 +19,9 @@ export default function OrganizerSelect(props) {
                 <div class="p-4 bg-gray-100 border-t-2 border-indigo-400 rounded-lg bg-opacity-5">
                     <div class="max-w-sm mx-auto md:w-full md:mx-0">
                         <div class="inline-flex items-center space-x-4">
-                            <a href="#" class="block relative">
+                            <div class="block relative">
                                 <img alt="profil" src="https://uploads-ssl.webflow.com/6010580d08831070b0339b25/60ac2e081a5db338cbc23534_BLKME3%202.PNG" class="mx-auto object-cover rounded-full h-16 w-16 " />
-                            </a>
+                            </div>
                             <h1 class="text-gray-600">
                                 Organizer
                     </h1>
@@ -31,7 +29,6 @@ export default function OrganizerSelect(props) {
                     </div>
                 </div>
                 <div class="space-y-6 bg-white">
-                    <h1></h1>
                     <Food /><hr />
                     <div className="mx-6 ">
                         <p className="font-bold ">Choose 3 items:<br/></p><br/>
